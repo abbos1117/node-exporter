@@ -1,0 +1,28 @@
+---
+- name: Detect architecture
+  ansible.builtin.set_fact:
+    node_exporter_arch: >-
+      {{
+        {
+          'x86_64': 'amd64',
+          'amd64': 'amd64',
+          'aarch64': 'arm64',
+          'arm64': 'arm64',
+          'armv7l': 'armv7',
+          'armv6l': 'armv6'
+        }.get(ansible_architecture, '')
+      }}
+
+- name: Validate architecture
+  ansible.builtin.assert:
+    that:
+      - node_exporter_arch != ""
+    fail_msg: "Unsupported architecture: {{ ansible_architecture }}"
+
+- name: Include installation tasks
+  ansible.builtin.include_tasks:
+    file: install.yml
+
+- name: Include configuration tasks
+  ansible.builtin.include_tasks:
+    file: configure.yml

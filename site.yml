@@ -1,0 +1,7 @@
+---
+- name: Install Node Exporter
+  hosts: linux
+  become: true
+
+  roles:
+    - node_exporter
