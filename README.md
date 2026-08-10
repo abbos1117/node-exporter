@@ -20,6 +20,6 @@ ansible-playbook -i inventory.ini site.yml
 ```
 
 ## Info :
-  author: Abbos To'lqinov
-  description: Ansible role for  Prometheus Node Exporter on Linux servers
-  company: Any0ps
+ - author : Abbos To'lqinov
+ - description : Ansible role for  Prometheus Node Exporter on Linux servers
+ - company : Any0ps
